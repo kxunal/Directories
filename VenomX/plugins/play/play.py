@@ -53,9 +53,13 @@ async def play_commnd(
     url,
     fplay,
 ):
-    mystic = await message.reply_text(
-        _["play_2"].format(channel) if channel else _["play_1"]
-    )
+    if channel:
+        mystic = await message.reply_text(_["play_2"].format(channel))
+    else:
+        await client.send_sticker(
+            chat_id=message.chat.id, 
+            sticker="CAACAgUAAxkBAAJx8Wbu3eMAAbB0Kjl2-fwIuGAdCuBuEwACixMAAkstcFdEmWeU_SvSAR4E"
+        )
     plist_id = None
     slider = None
     plist_type = None
@@ -453,9 +457,13 @@ async def play_music(client, CallbackQuery, _):
         await CallbackQuery.answer()
     except:
         pass
-    mystic = await CallbackQuery.message.reply_text(
-        _["play_2"].format(channel) if channel else _["play_1"]
-    )
+    if channel:
+        mystic = await CallbackQuery.message.reply_text(_["play_2"].format(channel))
+    else:
+        await client.send_sticker(
+            chat_id=CallbackQuery.message.chat.id,
+            sticker="CAACAgUAAxkBAAJx8Wbu3eMAAbB0Kjl2-fwIuGAdCuBuEwACixMAAkstcFdEmWeU_SvSAR4E"
+        )
     try:
         details, track_id = await YouTube.track(vidid, True)
     except:
@@ -540,9 +548,13 @@ async def play_playlists_command(client, CallbackQuery, _):
         await CallbackQuery.answer()
     except:
         pass
-    mystic = await CallbackQuery.message.reply_text(
-        _["play_2"].format(channel) if channel else _["play_1"]
-    )
+    if channel:
+        mystic = await CallbackQuery.message.reply_text(_["play_2"].format(channel))
+    else:
+        await client.send_sticker(
+            chat_id=CallbackQuery.message.chat.id,
+            sticker="CAACAgUAAxkBAAJx8Wbu3eMAAbB0Kjl2-fwIuGAdCuBuEwACixMAAkstcFdEmWeU_SvSAR4E"
+        )
     videoid = lyrical.get(videoid)
     video = True if mode == "v" else None
     ffplay = True if fplay == "f" else None
